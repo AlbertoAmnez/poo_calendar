@@ -1,5 +1,5 @@
 class Dia:
-    
+
     def __init__(self, anyo=1970, mes=1, dia=1):
         self.anyo = anyo
         self.mes = mes
@@ -44,11 +44,13 @@ class Dia:
 
         return F % 7
     
-
+    def __str__(self):
+        return f"{self.dia:02d}/{self.mes:02d}/{self.anyo}"
 
 
 try:
-    d = Dia(1970, 4, 31)
+    d = Dia(1970, 4, 25)
+    print(d) #Imprime la fecha si se cumplen las condiciones
 except ValueError as date:
     print(date) 
 
