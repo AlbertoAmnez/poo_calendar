@@ -44,13 +44,13 @@ class Dia:
 
         return F % 7
     
-    def __str__(self):
+    def info(self):
         return f"{self.dia:02d}/{self.mes:02d}/{self.anyo}"
 
 
 try:
     d = Dia(1970, 4, 25)
-    print(d) #Imprime la fecha si se cumplen las condiciones
+    print(d.info()) #Imprime la fecha si se cumplen las condiciones
 except ValueError as date:
     print(date) 
 
