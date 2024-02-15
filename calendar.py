@@ -29,18 +29,26 @@ class Dia:
             raise ValueError(f"El mes {self.mes} del año {self.anyo} no tiene {self.dia} dias")
     
     def calcular_dia_semana(self):
-        mes_nuevo = self.mes
-        anyo_nuevo = self.anyo
+        mes_ajustado = self.mes
+        anyo_ajustado = self.anyo
         if self.mes == 1 or self.mes == 2:
-            mes_nuevo += 12
-            anyo_nuevo -= 1
+            mes_ajustado += 12
+            anyo_ajustado -= 1
 
-        A = anyo_nuevo % 100
-        B = anyo_nuevo // 100
+        A = anyo_ajustado % 100
+        B = anyo_ajustado // 100
         C = 2 - B + B // 4
         D = A // 4
-        E = 13 * (mes_nuevo + 1) // 5
+        E = 13 * (mes_ajustado + 1) // 5
         F = A + C + D + E + self.dia
+
+        '''
+        Al parecer el algoritmo de Zeller en el calendario gregoriano no tiene en cuenta los años bisiestos a partir del año 2000.
+        Con esta pequeña correción lo que hará es que a partir del 2000, restará un dia para que nos de el resultado esperado
+        '''
+
+        if anyo_ajustado >= 2000:
+            F -= 1
 
         return F % 7
     
@@ -48,7 +56,7 @@ class Dia:
         return f"{self.dia:02d}/{self.mes:02d}/{self.anyo}"
     
     '''
-    Creo este metodo que retorca la cadena de texto correspondiente a la posicion del dia de la semana, por lo tanto si la posicion es [0] me devulve: "Sabado"
+    Creo este metodo que retorna la cadena de texto correspondiente a la posicion del dia de la semana, por lo tanto si la posicion es [0] me devulve: "Sabado"
     '''
 
     def dia_semana_texto(self):
@@ -56,7 +64,7 @@ class Dia:
         return dias_texto[self.dia_semana]
 
 try:
-    d = Dia(1970, 4, 25)
+    d = Dia(1995, 6, 25)
     print(d.info()) #Imprime la fecha si se cumplen las condiciones
     print(d.dia_semana_texto()) #Imprime el dia de la semana por nombre
 except ValueError as date:
