@@ -47,9 +47,9 @@ class Dia:
     def info(self):
         return f"{self.dia:02d}/{self.mes:02d}/{self.anyo}"
     
-'''
-Creo este metodo que retorca la cadena de texto correspondiente a la posicion del dia de la semana, por lo tanto si la posicion es [0] me devulve: "Sabado"
-'''
+    '''
+    Creo este metodo que retorca la cadena de texto correspondiente a la posicion del dia de la semana, por lo tanto si la posicion es [0] me devulve: "Sabado"
+    '''
 
     def dia_semana_texto(self):
         dias_texto = ["Sabado", "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
@@ -58,7 +58,7 @@ Creo este metodo que retorca la cadena de texto correspondiente a la posicion de
 try:
     d = Dia(1970, 4, 25)
     print(d.info()) #Imprime la fecha si se cumplen las condiciones
-    print(d.dia_semana_texto())
+    print(d.dia_semana_texto()) #Imprime el dia de la semana por nombre
 except ValueError as date:
     print(date) 
 
@@ -70,6 +70,6 @@ except ValueError as date:
 
 try:
     d = Dia(1970, 4, 25)
-    print(f"Dia de la semana: {d.dia_semana}")  
+    print(f"Dia de la semana: {d.dia_semana}")  #Imprime dia de la semana como un numero
 except ValueError as date:
     print(date)
